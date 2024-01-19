@@ -1,0 +1,27 @@
+{
+    "name": "mkrawczyk/funquery",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mateusz Krawczyk"
+        }
+    ],
+    "keywords": ["utility", "functional programming","functional", "php", "library", "redcue", "map", "filter", "collection", "iterator", "lazy evaluation"],
+    "minimum-stability": "stable",
+    "type": "library",
+    "require": {
+        "php": ">=7.4.0",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "MKrawczyk\\FunQuery\\": "src/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit tests"
+    }
+}
