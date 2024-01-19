@@ -4,8 +4,65 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "28dd8b6cce532a9e78386a98a37773c9",
+    "content-hash": "f3f818e2d945f1df6c5957b661ca3fe2",
     "packages": [
+        {
+            "name": "mkrawczyk/funquery",
+            "version": "v1.14.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/matrix0123456789/fun-query.git",
+                "reference": "21032b8b035bb362927adefe38507a166c9637bb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/matrix0123456789/fun-query/zipball/21032b8b035bb362927adefe38507a166c9637bb",
+                "reference": "21032b8b035bb362927adefe38507a166c9637bb",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=7.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.6.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MKrawczyk\\FunQuery\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mateusz Krawczyk"
+                }
+            ],
+            "keywords": [
+                "collection",
+                "filter",
+                "functional",
+                "functional programming",
+                "iterator",
+                "lazy evaluation",
+                "library",
+                "map",
+                "php",
+                "redcue",
+                "utility"
+            ],
+            "support": {
+                "issues": "https://github.com/matrix0123456789/fun-query/issues",
+                "source": "https://github.com/matrix0123456789/fun-query/tree/v1.14.0"
+            },
+            "time": "2023-10-24T11:39:25+00:00"
+        }
+    ],
+    "packages-dev": [
         {
             "name": "myclabs/deep-copy",
             "version": "1.11.1",
@@ -1622,7 +1679,6 @@
             "time": "2023-11-20T00:12:19+00:00"
         }
     ],
-    "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": [],
