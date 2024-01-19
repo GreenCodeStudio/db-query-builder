@@ -7,13 +7,13 @@ use Mkrawczyk\DbQueryBuilder\Serializers\Serializer;
 
 class SelectQuery extends Node
 {
-    public array $selectColumns = [];
+    public array $selectExpressions = [];
     public array $from = [];
     public array $where = [];
 
     public function selectAll()
     {
-        $this->selectColumns[] = new SelectAll();
+        $this->selectExpressions[] = new SelectAll();
     }
 
     public function from(SelectQuery|FromSourceTable|RawSQL $source, ?string $alias = null)
@@ -24,7 +24,7 @@ class SelectQuery extends Node
 
     public function select(SelectQuery|ColumnName|RawSQL $column, ?string $alias = null)
     {
-        $this->selectColumns[] = new SelectColumn($column, $alias);
+        $this->selectExpressions[] = new SelectExpression($column, $alias);
     }
 
     public function selectColumn(string $column, ?string $alias = null)
@@ -34,7 +34,7 @@ class SelectQuery extends Node
         }
         $column = new ColumnName($column);
 
-        $this->selectColumns[] = new SelectColumn($column, $alias);
+        $this->selectExpressions[] = new SelectExpression($column, $alias);
     }
 
     public function fromTable(string $source, ?string $alias = null)
@@ -50,5 +50,27 @@ class SelectQuery extends Node
     public function where(RawSQL $condition)
     {
         $this->where[] = $condition;
+    }
+
+    public function limit(?int $limit=null)
+    {
+        $this->limit = $limit;
+    }
+    public function offset(?int $offset=null)
+    {
+        $this->offset = $offset;
+    }
+
+    /**
+     * @alias offset
+     */
+    public function top(?int $top=null)
+    {
+        $this->offset($top);
+    }
+
+    public function setDistinct(bool $value=true)
+    {
+        $this->distinct = $value;
     }
 }

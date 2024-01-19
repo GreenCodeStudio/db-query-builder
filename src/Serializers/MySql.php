@@ -7,7 +7,7 @@ use Mkrawczyk\DbQueryBuilder\Nodes\From;
 use Mkrawczyk\DbQueryBuilder\Nodes\FromSourceTable;
 use Mkrawczyk\DbQueryBuilder\Nodes\RawSQL;
 use Mkrawczyk\DbQueryBuilder\Nodes\SelectAll;
-use Mkrawczyk\DbQueryBuilder\Nodes\SelectColumn;
+use Mkrawczyk\DbQueryBuilder\Nodes\SelectExpression;
 use Mkrawczyk\DbQueryBuilder\Nodes\SelectQuery;
 use Mkrawczyk\DbQueryBuilder\Serializers\Serializer;
 use MKrawczyk\FunQuery\FunQuery;

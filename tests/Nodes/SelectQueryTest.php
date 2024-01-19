@@ -8,21 +8,30 @@ use PHPUnit\Framework\TestCase;
 
 class SelectQueryTest extends TestCase
 {
-    public function testEmptySelectQuery()
+    public function testEmptySelectQueryMySql()
     {
         $obj = new \Mkrawczyk\DbQueryBuilder\Nodes\SelectQuery();
         $this->expectException(\Exception::class);
         $obj->getSql('MySQL');
+    }
+    public function testEmptySelectQueryMSSQL()
+    {
+        $obj = new \Mkrawczyk\DbQueryBuilder\Nodes\SelectQuery();
         $this->expectException(\Exception::class);
         $obj->getSql('MSSQL');
     }
 
-    public function testBadFromSelectQuery()
+    public function testBad1FromSelectQuery()
     {
         $obj = new \Mkrawczyk\DbQueryBuilder\Nodes\SelectQuery();
 
         $this->expectException(\Exception::class);
         $obj->fromTable('(SELECT * FROM tab2)');
+    }
+    public function testBad2FromSelectQuery()
+    {
+        $obj = new \Mkrawczyk\DbQueryBuilder\Nodes\SelectQuery();
+
         $this->expectException(\Exception::class);
         $obj->fromTable('db.table');
     }
@@ -67,5 +76,21 @@ class SelectQueryTest extends TestCase
         $obj->where(new RawSQL('column2 IS NULL'));
         $this->assertEquals('SELECT * FROM `example` WHERE (column1 < 5) AND (column2 IS NULL)', $obj->getSql('MySQL'));
         $this->assertEquals('SELECT * FROM "example" WHERE (column1 < 5) AND (column2 IS NULL)', $obj->getSql('MSSQL'));
+    }
+    public function testFullSelectQuery()
+    {
+        $obj = new \Mkrawczyk\DbQueryBuilder\Nodes\SelectQuery();
+        $obj->setDistinct();
+        $obj->selectAll();
+        $obj->selectColumn('column2', 'col2');
+        $obj->select(new RawSQL('2+2'), 'four');
+        $obj->fromTable('example');
+        $obj->where(new RawSQL('1<2'));
+        $obj->orderBy(new RawSQL('column2'));
+        $obj->orderByColumnDesc('column1');
+        $obj->limit(10);
+        $obj->offset(5);
+        $this->assertEquals('SELECT DISTINCT *, `column2` as \'col2\', (2+2) as \'four\' FROM `example` WHERE (1 < 2) ORDER BY (coluimn2), column1 DESC OFFSET 5 LIMIT 10', $obj->getSql('MySQL'));
+        $this->assertEquals('SELECT DISTINCT *, "column2" as \'col2\', (2+2) as \'four\' FROM "example" WHERE (1 < 2) ORDER BY (coluimn2), column1 DESC OFFSET 5 ROWS FETCH NEXT 10 ROWS ONLY', $obj->getSql('MSSQL'));
     }
 }

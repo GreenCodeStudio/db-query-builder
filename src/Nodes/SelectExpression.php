@@ -2,7 +2,7 @@
 
 namespace Mkrawczyk\DbQueryBuilder\Nodes;
 
-class SelectColumn extends Node
+class SelectExpression extends Node
 {
     public SelectQuery|ColumnName|RawSQL|SelectAll $column;
     public ?string $alias = null;
