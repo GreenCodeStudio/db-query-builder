@@ -1,0 +1,22 @@
+{
+    "name": "mkrawczyk/db-query-builder",
+    "type": "library",
+    "require": {
+        "phpunit/phpunit": "^10.5"
+    },
+    "scripts": {
+        "test": "phpunit --bootstrap vendor/autoload.php tests"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Mkrawczyk\\DbQueryBuilder\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "MateuszKrawczyk",
+            "email": "mateuszkrawczyk1996@gmail.com"
+        }
+    ]
+}
